@@ -1,7 +1,36 @@
-import { ChevronDown, Bell, RefreshCw, Settings, User } from "lucide-react";
+import { ChevronDown, Bell, RefreshCw, Settings, User, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { MetaInvoiceModal } from "./MetaInvoiceModal";
 
 const Header = () => {
+  const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
+
+  const sampleInvoiceData = {
+    invoiceNumber: "META-2025-001",
+    date: "January 15, 2025",
+    dueDate: "February 15, 2025",
+    customerName: "TEAM UNITY",
+    customerAddress: [
+      "Business Street",
+      "Mumbai, Maharashtra 400001",
+      "India"
+    ],
+    items: [
+      {
+        description: "Meta Advertising Services - Campaign Management",
+        amount: 85000
+      },
+      {
+        description: "Performance Analytics & Reporting",
+        amount: 25000
+      }
+    ],
+    subtotal: 110000,
+    tax: 0,
+    total: 110000
+  };
+
   return (
     <div className="bg-header-bg border-b border-table-border px-6 py-3">
       <div className="flex items-center justify-between">
@@ -53,6 +82,15 @@ const Header = () => {
           <Button variant="outline" size="sm">
             Review and publish
           </Button>
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => setIsInvoiceModalOpen(true)}
+            className="flex items-center gap-2"
+          >
+            <FileText className="w-4 h-4" />
+            Invoice
+          </Button>
           <Settings className="w-4 h-4 text-text-secondary cursor-pointer" />
           <div className="relative">
             <Bell className="w-4 h-4 text-text-secondary cursor-pointer" />
@@ -68,6 +106,13 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Invoice Modal */}
+      <MetaInvoiceModal
+        isOpen={isInvoiceModalOpen}
+        onClose={() => setIsInvoiceModalOpen(false)}
+        invoiceData={sampleInvoiceData}
+      />
     </div>
   );
 };
