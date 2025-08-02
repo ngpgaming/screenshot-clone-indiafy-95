@@ -7,6 +7,7 @@ import ExportModal from "./ExportModal";
 import EditCampaignModal from "./EditCampaignModal";
 import CreateCampaignModal from "./CreateCampaignModal";
 import { MetaInvoiceModal } from "./MetaInvoiceModal";
+import { InvoiceConfirmationModal } from "./InvoiceConfirmationModal";
 import { useCampaigns } from "@/hooks/useCampaigns";
 
 interface TableControlsProps {
@@ -18,6 +19,7 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const { campaigns, updateCampaignName, createCampaign, deleteCampaign, totalActiveReach, totalReach } = campaignsData;
 
   const activeCampaignsCount = campaigns.filter(c => c.active).length;
@@ -48,6 +50,12 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
   };
 
   // Invoice data with budget amounts and ads names
+  const activeCampaigns = campaigns.filter(c => c.active);
+  const activeTotalBudget = activeCampaigns.reduce((sum, campaign) => {
+    const budget = parseFloat(campaign.budget.replace(/[₹,]/g, ''));
+    return sum + budget;
+  }, 0);
+
   const invoiceData = {
     invoiceNumber: "META-2025-001",
     date: "July 15, 2025",
@@ -58,13 +66,18 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
       "Mumbai, Maharashtra 400001",
       "India"
     ],
-    items: campaigns.filter(c => c.active).map(campaign => ({
+    items: activeCampaigns.map(campaign => ({
       description: campaign.name,
       amount: parseFloat(campaign.budget.replace(/[₹,]/g, ''))
     })),
-    subtotal: totalBudget,
+    subtotal: activeTotalBudget,
     tax: 0,
-    total: totalBudget
+    total: activeTotalBudget
+  };
+
+  const handleConfirmInvoice = () => {
+    setIsConfirmModalOpen(false);
+    setIsInvoiceModalOpen(true);
   };
 
   return (
@@ -288,7 +301,7 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
 
             <button 
               className="fb-button fb-button-secondary"
-              onClick={() => setIsInvoiceModalOpen(true)}
+              onClick={() => setIsConfirmModalOpen(true)}
               style={{
                 fontFamily: "'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif",
                 fontSize: '14px',
@@ -328,6 +341,14 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
         campaigns={campaigns}
         onUpdateCampaign={updateCampaignName}
         onDeleteCampaign={deleteCampaign}
+      />
+      
+      <InvoiceConfirmationModal
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
+        onConfirm={handleConfirmInvoice}
+        campaignCount={activeCampaigns.length}
+        totalAmount={activeTotalBudget}
       />
       
       <MetaInvoiceModal
