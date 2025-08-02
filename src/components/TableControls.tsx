@@ -52,9 +52,9 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
     invoiceNumber: "META-2025-001",
     date: "July 15, 2025",
     dueDate: "August 15, 2025",
-    customerName: "Your Company Name",
+    customerName: "TEAM UNITY",
     customerAddress: [
-      "123 Business Street",
+      "Business Street",
       "Mumbai, Maharashtra 400001",
       "India"
     ],
