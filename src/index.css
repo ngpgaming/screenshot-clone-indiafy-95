@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Facebook's font */
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap');
+
+/* Facebook Ads Manager Design System */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 216 13% 14%;
+    
+    /* Exact Facebook Blue Colors */
+    --facebook-blue: 214 89% 52%; /* #1877f2 */
+    --facebook-blue-dark: 214 89% 42%;
+    --facebook-blue-light: 214 89% 62%;
+    --facebook-hover: 214 89% 47%;
+    
+    /* Facebook Layout Colors - Exact matches */
+    --sidebar-bg: 240 10% 96%; /* #f0f2f5 */
+    --sidebar-hover: 210 17% 92%; /* #e4e6eb */
+    --sidebar-active: 214 100% 97%; /* #e7f3ff */
+    --sidebar-border: 0 0% 87%; /* #dadde1 */
+    --header-bg: 0 0% 100%; /* #ffffff */
+    --table-header: 220 14% 96%; /* #f7f8fa */
+    --table-border: 220 13% 91%; /* #e4e6ea */
+    
+    /* Facebook Text Colors - Exact matches */
+    --text-primary: 216 15% 12%; /* #1c1e21 */
+    --text-secondary: 216 12% 48%; /* #65676b */
+    --text-muted: 216 12% 65%; /* #8a8d91 */
+    --text-icon: 0 0% 27%; /* #444950 */
+    
+    /* Interactive States */
+    --hover-bg: 0 0% 96%; /* #f5f6f7 */
+    --active-bg: 214 89% 96%;
+    --border-light: 220 13% 91%; /* #e4e6ea */
+    
+    /* Status Colors - Facebook style */
+    --success: 142 76% 36%; /* #42b883 */
+    --warning: 45 93% 47%;
+    --error: 0 84% 60%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.34;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Facebook style typography */
+  .fb-text-sm {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  
+  .fb-text-base {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .fb-text-lg {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  
+  /* Facebook button styles */
+  .fb-button {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 8px 16px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.1s ease;
+  }
+  
+  .fb-button-primary {
+    background-color: hsl(var(--facebook-blue));
+    border-color: hsl(var(--facebook-blue));
+    color: white;
+  }
+  
+  .fb-button-primary:hover {
+    background-color: hsl(var(--facebook-hover));
+    border-color: hsl(var(--facebook-hover));
+  }
+  
+  .fb-button-secondary {
+    background-color: hsl(var(--hover-bg));
+    border-color: hsl(var(--border-light));
+    color: hsl(var(--text-primary));
+  }
+  
+  .fb-button-secondary:hover {
+    background-color: hsl(var(--sidebar-hover));
+  }
+  
+  /* Table styles */
+  .fb-table-header {
+    background-color: hsl(var(--table-header));
+    border-bottom: 1px solid hsl(var(--table-border));
+    font-weight: 600;
+    font-size: 12px;
+    color: hsl(var(--text-secondary));
+    text-transform: none;
+    padding: 8px 12px;
+  }
+  
+  .fb-table-cell {
+    padding: 12px;
+    border-bottom: 1px solid hsl(var(--table-border));
+    font-size: 14px;
+    color: hsl(var(--text-primary));
+  }
+  
+  .fb-table-row:hover {
+    background-color: hsl(var(--hover-bg));
+  }
+}
