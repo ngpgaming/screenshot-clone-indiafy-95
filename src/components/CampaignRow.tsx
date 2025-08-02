@@ -1,18 +1,20 @@
 
 import React from 'react';
-import { ToggleLeft, ToggleRight } from "lucide-react";
+import { ToggleLeft, ToggleRight, Receipt } from "lucide-react";
 import { Campaign } from '@/hooks/useCampaigns';
 
 interface CampaignRowProps {
   campaign: Campaign;
   onToggle: (campaignId: string) => void;
   onCampaignClick: (campaign: Campaign) => void;
+  onInvoiceClick: (campaign: Campaign) => void;
 }
 
 const CampaignRow: React.FC<CampaignRowProps> = ({
   campaign,
   onToggle,
-  onCampaignClick
+  onCampaignClick,
+  onInvoiceClick
 }) => {
   return (
     <div 
@@ -111,6 +113,17 @@ const CampaignRow: React.FC<CampaignRowProps> = ({
       {/* Cost per result */}
       <div className="w-32 px-2">
         <span className="fb-text-base text-text-primary" style={{ fontWeight: '500' }}>{campaign.cost_per_result}</span>
+      </div>
+
+      {/* Invoice Button */}
+      <div className="w-24 px-2">
+        <button
+          onClick={() => onInvoiceClick(campaign)}
+          className="flex items-center justify-center w-8 h-8 rounded-md hover:bg-gray-100 transition-colors"
+          title="Generate Invoice"
+        >
+          <Receipt className="w-4 h-4 text-gray-600 hover:text-blue-600" />
+        </button>
       </div>
     </div>
   );
