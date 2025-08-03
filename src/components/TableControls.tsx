@@ -8,6 +8,7 @@ import EditCampaignModal from "./EditCampaignModal";
 import CreateCampaignModal from "./CreateCampaignModal";
 import { MetaInvoiceModal } from "./MetaInvoiceModal";
 import { InvoiceConfirmationModal } from "./InvoiceConfirmationModal";
+import ReportsModal from "./ReportsModal";
 import { useCampaigns } from "@/hooks/useCampaigns";
 
 interface TableControlsProps {
@@ -20,6 +21,7 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isReportsModalOpen, setIsReportsModalOpen] = useState(false);
   const { campaigns, updateCampaignName, createCampaign, deleteCampaign, totalActiveReach, totalReach } = campaignsData;
 
   const activeCampaignsCount = campaigns.filter(c => c.active).length;
@@ -260,6 +262,7 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
 
             <button 
               className="fb-button fb-button-secondary"
+              onClick={() => setIsReportsModalOpen(true)}
               style={{
                 fontFamily: "'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif",
                 fontSize: '14px',
@@ -355,6 +358,12 @@ const TableControls = ({ campaignsData }: TableControlsProps) => {
         isOpen={isInvoiceModalOpen}
         onClose={() => setIsInvoiceModalOpen(false)}
         invoiceData={invoiceData}
+      />
+      
+      <ReportsModal
+        isOpen={isReportsModalOpen}
+        onClose={() => setIsReportsModalOpen(false)}
+        campaignsData={campaignsData}
       />
     </>
   );
