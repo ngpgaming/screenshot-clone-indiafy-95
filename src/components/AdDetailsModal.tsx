@@ -276,11 +276,11 @@ const AdDetailsModal = ({ isOpen, onClose, campaign }: AdDetailsModalProps) => {
                     </div>
                     <div>
                       <label className="text-sm font-medium text-gray-600">Created Date</label>
-                      <div className="text-base">15 Jul 2025</div>
+                      <div className="text-base">2 August 2025</div>
                     </div>
                     <div>
                       <label className="text-sm font-medium text-gray-600">Start Date</label>
-                      <div className="text-base">16 Jul 2025</div>
+                      <div className="text-base">2 August 2025</div>
                     </div>
                   </div>
                 </CardContent>
